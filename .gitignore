@@ -1,0 +1,16 @@
+# Temporary files
+*~*
+
+# VS CODE configs
+.vscode/
+
+# npm dubug log
+# Selenium server debug log
+/debug.log
+/npm-dubug.log
+
+# node packages
+/node_modules/
+
+# test results
+/report/*

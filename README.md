@@ -2,8 +2,11 @@
 ***
 
 > Info !
+
 > You'll need to Node > 6.x.x for correct runs
-> Node 6 (LTS) does not contain async/await func, so use 'asyncawait' npm (use instead fibers), it possible troubles with install fiber on mac
+
+> Node 6 (LTS) does not contain async/await func, so use 'asyncawait' npm (it use fibers inside), it possible troubles with install fibers on mac
+
 > Commands should be run from the root directory of project
 
 ### USAGE
@@ -27,3 +30,11 @@
 :: check report at ./report/cucumber_report.html
 
 > There is troubles with Allure + Cucumber 2.0
+
+> TODO LIST
+
+> use Node 7 with native async/await
+
+> use steps inside step for minimum duplication
+
+> add screenshot reporter

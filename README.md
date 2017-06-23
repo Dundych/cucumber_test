@@ -3,7 +3,7 @@
 
 > Info !
 > You'll need to Node > 6.x.x for correct runs
-> Node 6 does not contain async/await func, so use asyncawait npm
+> Node 6 (LTS) does not contain async/await func, so use 'asyncawait' npm (use instead fibers), it possible troubles with install fiber on mac
 > Commands should be run from the root directory of project
 
 ### USAGE

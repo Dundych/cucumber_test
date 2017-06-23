@@ -1,5 +1,8 @@
 'use strict';
 
+let fs = require('fs');
+let path = require('path');
+let mkdirp = require('mkdirp');
 let dateFormat = require('dateformat');
 
 let _async = require('asyncawait/async');
@@ -12,6 +15,9 @@ let chai = require('chai'),
 chai.use(chaiAsPromised);
 
 let { defineSupportCode } = require('cucumber');
+
+let reportFolderPath = './report';
+let jsorResults = path.join(reportFolderPath, 'results.json');
 
 exports.config = {
 
@@ -62,7 +68,7 @@ exports.config = {
             //"@cur"
         ],
         strict: true,
-        format: ['pretty', 'json:./report/results.json'],
+        format: ['pretty', `json:${jsorResults}`],
         require: ['./step_definitions/*.steps.js']
     },
 
@@ -75,18 +81,11 @@ exports.config = {
 
         let options = {
             theme: 'bootstrap',
-            jsonFile: 'report/results.json',
-            output: 'report/cucumber_report.html',
+            jsonFile: jsorResults,
+            output: path.join(reportFolderPath, 'cucumber_report.html'),
             reportSuiteAsScenarios: true,
             launchReport: false,
-            metadata: {
-                "App Version": "0.3.2",
-                "Test Environment": "STAGING",
-                "Browser": "Chrome  54.0.2840.98",
-                "Platform": "Windows 10",
-                "Parallel": "Scenarios",
-                "Executed": "Remote"
-            }
+            metadata: {}
         };
 
         reporter.generate(options);
@@ -95,14 +94,19 @@ exports.config = {
         let CucumberHtmlReport = require('cucumber-html-report');
 
         return CucumberHtmlReport.create({
-            source: './report/results.json',
-            dest: './report',
+            source: jsorResults,
+            dest: reportFolderPath,
             title: 'OptiRoute - Protractor Test Run',
             component: new Date().toString()
         }).then(console.log).catch(console.log);
     },
 
     onPrepare: function () {
+
+        //create report folder if not exist
+        if (!fs.existsSync(reportFolderPath)) {
+            mkdirp.sync(reportFolderPath);
+        }
 
         // non Ang app
         browser.ignoreSynchronization = true;

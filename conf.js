@@ -37,9 +37,11 @@ exports.config = {
         browserName: 'chrome',
         chromeOptions: {
             args: [
+                //'--remote-debugging-port=9222',
                 //'start-maximized',
                 //'incognito',
-                "--test-type",
+                '--headless',
+                '--test-type',
                 '--disable-extensions',
                 '--enable-crash-reporter-for-testing',
                 '--no-sandbox',
@@ -114,7 +116,7 @@ exports.config = {
 
         // timeout for cucumber
         defineSupportCode(({ setDefaultTimeout }) => {
-            setDefaultTimeout(15 * 1000);
+            setDefaultTimeout(30 * 1000);
         });
 
     }

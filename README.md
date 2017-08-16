@@ -17,7 +17,7 @@
 
 :: download the necessary binaries for webdriver-manager
 
-    node_modules\.bin\webdriver-manager update
+    node node_modules\protractor\bin\webdriver-manager update
 
 :: run test
 
@@ -27,7 +27,27 @@
 
     npm test
 
+### run inside docker container (docker required)
+
+:: 1- inside container from docker hub https://github.com/sequenceiq/docker-e2e-protractor
+
+:: run tests
+
+    docker run -it --rm --name protractor-runner -v $(PWD):/protractor/project hortonworks/docker-e2e-protractor conf.js
+
+:: 2- inside cusrom container
+
+:: Create custom container (for run test in headless chrome (version >= 60)
+
+    docker build . -t headless-test-runner
+
+:: Run tests inside custom container
+
+    docker run -it --rm --name headless-test-runner -v $(PWD):/protractor/project headless-test-runner conf.js
+
 :: check report at ./report/cucumber_report.html
+
+> You have to clean 'node-modules' folder if you want run test on linux and windows
 
 > There is troubles with Allure + Cucumber 2.0
 

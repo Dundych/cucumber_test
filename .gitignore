@@ -4,6 +4,9 @@
 # VS CODE configs
 .vscode/
 
+# npm
+.npm/
+
 # npm dubug log
 # Selenium server debug log
 /debug.log

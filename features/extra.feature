@@ -8,6 +8,7 @@ Feature: Additional tests
     And Click "Create this computer" button
     And Message "Done! Computer <name> has been created" is displayed
     Then Header of current page contains text "computers found"
+    And Take screenshot
     When Save current amount of computers to variable "afterAdding"
     When Value in variable "afterAdding" greater then value in variable "beforeAdding" by 1
     Examples:

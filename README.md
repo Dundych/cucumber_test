@@ -33,7 +33,7 @@
 
 :: run tests
 
-    docker run -it --rm --name protractor-runner -v $(PWD):/protractor/project hortonworks/docker-e2e-protractor conf.js
+    docker run -it --rm --name protractor-runner -v $(pwd):/protractor/project hortonworks/docker-e2e-protractor conf.js
 
 :: 2- inside cusrom container
 
@@ -43,7 +43,7 @@
 
 :: Run tests inside custom container
 
-    docker run -it --rm --name headless-test-runner -v $(PWD):/protractor/project headless-test-runner conf.js
+    docker run -it --rm --name headless-test-runner --privileged --network=host -v $(pwd):/protractor headless-test-runner bash /protractor/scripts/run-e2e-tests.sh conf.js
 
 :: check report at ./report/cucumber_report.html
 

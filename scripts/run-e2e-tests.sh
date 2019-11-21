@@ -1,6 +1,6 @@
 #!/bin/bash
-# Move to the protractor project folder (it should be defined in Dockerfile)
-cd $HOME
+# Move to the protractor project folder (it should be defined in Dockerfile or mounted by "run" script)
+cd /protractor
 
 # Install the necessary npm packages
 npm install

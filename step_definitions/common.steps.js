@@ -3,6 +3,8 @@
 
 let _async = require('asyncawait/async');
 let _await = require('asyncawait/await');
+let dateFormat = require('dateformat');
+let fs = require('fs');
 
 let chai = require('chai'),
   chaiAsPromised = require('chai-as-promised'),
@@ -33,6 +35,17 @@ defineSupportCode(({ Given, When, Then, And }) => {
   }));
 
 
+  When(/^Take screenshot$/, _async(() => {
+    browser.takeScreenshot().then(function(screenShot) {
+      //    Saving File.
+      //    Param filePath : where you want to store screenShot
+      //    Param screenShot : Screen shot file which you want to store. 
+      fs.writeFile(`./report/${dateFormat(Date.now(), "yyyy-mm-ddTHH-MM-ss")}.png`, screenShot, 'base64', function (err) {
+        if (err) throw err;
+        console.log('File saved.');
+      });
+    });
+  }));
 
   When(/^Click "(.*)" button$/, _async((buttonName) => {
     let button = _await(new pa.BasePage().getButtonByName(buttonName));
